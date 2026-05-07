@@ -1,8 +1,7 @@
 const { app, shell, BrowserWindow } = require('electron')
 const { join } = require('path')
-
+const path = require('node:path')
 function createWindow() {
-  const preloadPath = join(__dirname, '../../out/preload/preload.js')
 
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -15,7 +14,7 @@ function createWindow() {
       symbolColor: '#000000'
     },
     webPreferences: {
-      preload: preloadPath,
+      preload: path.join(__dirname, 'preload.js'),
       sandbox: false
     }
   })
@@ -30,9 +29,9 @@ function createWindow() {
   })
 
   if (process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
   }
 }
 
