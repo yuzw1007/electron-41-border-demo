@@ -4,8 +4,8 @@ const { join } = require("path");
 const path = require("node:path");
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 600,
+    height: 470,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: "hidden",
